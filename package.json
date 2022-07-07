@@ -1,0 +1,26 @@
+{
+    "name": "wordle",
+    "version": "1.0.0",
+    "description": "A clone of the wordle game",
+    "main": "index.js",
+    "scripts": {
+      "start": "snowpack dev",
+      "build": "snowpack build",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Rahul Rao",
+    "license": "MIT",
+    "dependencies": {
+      "@snowpack/plugin-sass": "^1.4.0",
+      "@snowpack/plugin-typescript": "^1.2.1",
+      "react": "^18.1.0",
+      "react-dom": "^18.1.0",
+      "snowpack": "^3.8.8",
+      "typescript": "^4.6.4"
+    },
+    "devDependencies": {
+      "@types/react": "^18.0.8",
+      "@types/react-dom": "^18.0.3"
+    }
+  }
+  
