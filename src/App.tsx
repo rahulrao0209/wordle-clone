@@ -2,6 +2,8 @@ import React from "react";
 
 export const App = () => {
   return (
-    <div>Hello World</div>
+    <div className="app">
+      <h1>Wordle</h1>
+    </div>
   )
 }

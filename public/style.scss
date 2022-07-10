@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  text-align: center;
+  font-family: verdana;
+}
+
+h1 {
+  font-size: 2.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 3rem 0;
+  color: #333;
+}
