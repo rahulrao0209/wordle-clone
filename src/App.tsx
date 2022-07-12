@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export const App = () => {
 
-  const [solution, setSolution] = useState(null);
+  const [solution, setSolution] = useState<string | null>(null);
   
   useEffect(() => {
     const fetchData = async () => {
