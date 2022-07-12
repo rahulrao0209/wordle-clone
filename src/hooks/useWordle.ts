@@ -6,6 +6,7 @@ const useWordle = (solution: string) => {
     const [guesses, setGuesses] = useState([]);
     const [history, setHistory] = useState([]);
     const [isCorrect, setIsCorrect] = useState(false);
+
     /*
       Format a guess into an array of letter objects
       ex: [{key: "a", color: "green"}]
@@ -27,8 +28,14 @@ const useWordle = (solution: string) => {
       Handle keyup event & track current guess
       If user presses enter, add the new guess
     */
-    const handleKeyup = () => {
+    const handleKeyup = ({ key }: KeyboardEvent) => {
+        const pattern = /^[A-Za-z]$/;
 
+        if(key === 'Backspace') {
+          setCurrentGuess(prevState => prevState.slice(0, -1));
+          return;
+        }
+        pattern.test(key) && (currentGuess.length < 5) && setCurrentGuess(prevState => prevState + key);
     }
 
     return { turn, currentGuess, guesses, isCorrect, handleKeyup }
