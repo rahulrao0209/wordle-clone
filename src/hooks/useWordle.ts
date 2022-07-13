@@ -4,7 +4,7 @@ const useWordle = (solution: string) => {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState('');
     const [guesses, setGuesses] = useState([]);
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState<string[]>([]);
     const [isCorrect, setIsCorrect] = useState(false);
 
     /*
@@ -12,7 +12,7 @@ const useWordle = (solution: string) => {
       ex: [{key: "a", color: "green"}]
     */
     const formatGuess = () => {
-
+      console.log("Formatting the current guess: ", currentGuess);
     }
 
     /*
@@ -30,6 +30,25 @@ const useWordle = (solution: string) => {
     */
     const handleKeyup = ({ key }: KeyboardEvent) => {
         const pattern = /^[A-Za-z]$/;
+
+        if(key === 'Enter') {
+          if(turn > 5) {
+            console.log("Sorry! You've used all your guesses!");
+            return;
+          }
+
+          if(history.includes(currentGuess)) {
+            console.log("You have already tried that word!");
+            return;
+          }
+
+          if(currentGuess.length !== 5) {
+            console.log("The word must be 5 chars long");
+            return;
+          }
+
+          formatGuess();
+        }
 
         if(key === 'Backspace') {
           setCurrentGuess(prevState => prevState.slice(0, -1));
