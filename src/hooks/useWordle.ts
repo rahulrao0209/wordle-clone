@@ -1,9 +1,14 @@
 import { useState } from "react";
 
+type formattedGuess = {
+  key: string;
+  color: string;
+}
+
 const useWordle = (solution: string) => {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState('');
-    const [guesses, setGuesses] = useState([]);
+    const [guesses, setGuesses] = useState<formattedGuess[]>([]); 
     const [history, setHistory] = useState<string[]>([]);
     const [isCorrect, setIsCorrect] = useState(false);
 
@@ -12,7 +17,29 @@ const useWordle = (solution: string) => {
       ex: [{key: "a", color: "green"}]
     */
     const formatGuess = () => {
-      console.log("Formatting the current guess: ", currentGuess);
+      let solutionArray: string[] | null[] | any  = [...solution];
+      
+      let formattedGuesses: formattedGuess[] = [...currentGuess].map((letter) => {
+        return {key: letter, color: 'grey'};
+      })
+
+      // Check for exact matches i.e check letters which should be colored green
+      formattedGuesses.forEach((letter, index) => {
+        if(letter.key === solutionArray[index]) {
+          formattedGuesses[index].color = 'green';
+          solutionArray[index] = null;
+        }
+      })
+
+      // Check for letters in the solution but not at the right position i.e  letters that should be colored green
+      formattedGuesses.forEach((letter, index) => {
+        if(solutionArray.includes(letter.key) && letter.color !== 'green') {
+          formattedGuesses[index].color = 'yellow';
+          // solutionArray[solutionArray.indexOf(letter.key)] = null;
+        }
+      })
+
+      return formattedGuesses;
     }
 
     /*
@@ -47,7 +74,8 @@ const useWordle = (solution: string) => {
             return;
           }
 
-          formatGuess();
+          const formattedGuess = formatGuess();
+          console.log("formattedGuess", formattedGuess);
         }
 
         if(key === 'Backspace') {
