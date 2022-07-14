@@ -1,9 +1,10 @@
 import React from "react";
 import Row from "./Row";
+import type { formattedGuess } from "../hooks/useWordle";
 
 type GridProps = {
   currentGuess: string;
-  guesses: string[];
+  guesses: (formattedGuess[] | undefined)[];
   turn: number;
 }
 
@@ -11,7 +12,7 @@ const Grid = ({ currentGuess, guesses, turn }: GridProps) => {
   return (
     <div className="grid">
       {guesses.map((guess, index) => {
-        return <Row key={index} />
+        return <Row key={index} guess={guess}/>
       })}
     </div>
   )

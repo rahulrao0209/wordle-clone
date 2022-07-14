@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type formattedGuess = {
+export type formattedGuess = {
   key: string;
   color: string;
 }
@@ -8,7 +8,7 @@ type formattedGuess = {
 const useWordle = (solution: string) => {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState('');
-    const [guesses, setGuesses] = useState([...Array(6)]); 
+    const [guesses, setGuesses] = useState<(formattedGuess[] | undefined)[]>([...Array(6)]); 
     const [history, setHistory] = useState<string[]>([]);
     const [isCorrect, setIsCorrect] = useState(false);
 
