@@ -7,8 +7,8 @@ type WordleProps = {
 
 const Wordle = ({ solution }: WordleProps) => {
 
-  const { currentGuess, handleKeyup } = useWordle(solution);
-    
+  const { currentGuess, handleKeyup, guesses, isCorrect, turn } = useWordle(solution);
+     
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
     return () => window.removeEventListener("keyup", handleKeyup);

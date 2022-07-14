@@ -8,7 +8,7 @@ type formattedGuess = {
 const useWordle = (solution: string) => {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState('');
-    const [guesses, setGuesses] = useState<formattedGuess[]>([]); 
+    const [guesses, setGuesses] = useState([...Array(6)]); 
     const [history, setHistory] = useState<string[]>([]);
     const [isCorrect, setIsCorrect] = useState(false);
 
@@ -47,8 +47,22 @@ const useWordle = (solution: string) => {
       Update the isCorrect state if the guess is correct
       Add one to the turn state
     */
-    const addNewGuess = () => {
+    const addNewGuess = (guess: formattedGuess[]) => {
+      if(currentGuess === solution) {
+        setIsCorrect(true);
+      }
 
+      setGuesses(prevGuesses => {
+        let newGuesses = [...prevGuesses];
+        newGuesses[turn] = guess;
+        return newGuesses;
+      })
+
+      setHistory(prevHistory => [...prevHistory, currentGuess]);
+
+      setTurn(prevTurn => prevTurn + 1);
+
+      setCurrentGuess('');
     }
 
     /*
@@ -75,7 +89,7 @@ const useWordle = (solution: string) => {
           }
 
           const formattedGuess = formatGuess();
-          console.log("formattedGuess", formattedGuess);
+          addNewGuess(formattedGuess);
         }
 
         if(key === 'Backspace') {
