@@ -3,10 +3,11 @@ import type { formattedGuess } from "../hooks/useWordle";
 
 type RowProps = {
   key: number; 
-  guess: formattedGuess[] | undefined;
+  guess?: formattedGuess[] | undefined;
+  currentGuess?: string;
 }
 const Row = (props: RowProps) => {
-  const { guess } = props;
+  const { guess, currentGuess } = props;
 
   if(guess) {
     return (
@@ -14,6 +15,17 @@ const Row = (props: RowProps) => {
         { guess.map((guess, index) => {
           return <div key={index} className={guess.color}>{guess.key}</div>;
         })}
+      </div>
+    )
+  }
+
+  if(currentGuess) {
+    const letters = [...currentGuess];
+
+    return (
+      <div className="row current">
+        {letters.map((letter, index) => <div key={index} className="filled">{letter}</div>)}
+        {[...Array(5 - letters.length)].map((_, index) => <div key={index}></div>)}
       </div>
     )
   }

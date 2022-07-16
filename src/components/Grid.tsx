@@ -12,7 +12,8 @@ const Grid = ({ currentGuess, guesses, turn }: GridProps) => {
   return (
     <div className="grid">
       {guesses.map((guess, index) => {
-        return <Row key={index} guess={guess}/>
+        if(turn === index) return <Row key={index} currentGuess={currentGuess} />
+        return <Row key={index} guess={guess} />
       })}
     </div>
   )
