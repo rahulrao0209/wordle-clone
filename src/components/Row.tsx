@@ -37,7 +37,6 @@ const Row = (props: RowProps) => {
         <div></div>
         <div></div>
         <div></div>
-        <div></div>
     </div>
   )
 }
