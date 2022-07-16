@@ -1,5 +1,5 @@
-import React from "react";
-import type { formattedGuess } from "../hooks/useWordle";
+import React from 'react';
+import type { formattedGuess } from '../hooks/useWordle';
 
 type RowProps = {
   key: number;

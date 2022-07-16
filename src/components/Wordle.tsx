@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import Grid from "./Grid";
-import useWordle from "../hooks/useWordle";
+import React, { useEffect } from 'react';
+import Grid from './Grid';
+import useWordle from '../hooks/useWordle';
 
 type WordleProps = {
   solution: string;
@@ -11,8 +11,8 @@ const Wordle = ({ solution }: WordleProps) => {
     useWordle(solution);
 
   useEffect(() => {
-    window.addEventListener("keyup", handleKeyup);
-    return () => window.removeEventListener("keyup", handleKeyup);
+    window.addEventListener('keyup', handleKeyup);
+    return () => window.removeEventListener('keyup', handleKeyup);
   }, [handleKeyup]);
 
   return (

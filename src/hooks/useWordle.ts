@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export type formattedGuess = {
   key: string;
@@ -7,7 +7,7 @@ export type formattedGuess = {
 
 const useWordle = (solution: string) => {
   const [turn, setTurn] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState("");
+  const [currentGuess, setCurrentGuess] = useState('');
   const [guesses, setGuesses] = useState<(formattedGuess[] | undefined)[]>([
     ...Array(6),
   ]);
@@ -22,21 +22,21 @@ const useWordle = (solution: string) => {
     let solutionArray: string[] | null[] | any = [...solution];
 
     let formattedGuesses: formattedGuess[] = [...currentGuess].map((letter) => {
-      return { key: letter, color: "grey" };
+      return { key: letter, color: 'grey' };
     });
 
     // Check for exact matches i.e check letters which should be colored green
     formattedGuesses.forEach((letter, index) => {
       if (letter.key === solutionArray[index]) {
-        formattedGuesses[index].color = "green";
+        formattedGuesses[index].color = 'green';
         solutionArray[index] = null;
       }
     });
 
     // Check for letters in the solution but not at the right position i.e  letters that should be colored green
     formattedGuesses.forEach((letter, index) => {
-      if (solutionArray.includes(letter.key) && letter.color !== "green") {
-        formattedGuesses[index].color = "yellow";
+      if (solutionArray.includes(letter.key) && letter.color !== 'green') {
+        formattedGuesses[index].color = 'yellow';
         // solutionArray[solutionArray.indexOf(letter.key)] = null;
       }
     });
@@ -64,7 +64,7 @@ const useWordle = (solution: string) => {
 
     setTurn((prevTurn) => prevTurn + 1);
 
-    setCurrentGuess("");
+    setCurrentGuess('');
   };
 
   /*
@@ -74,19 +74,19 @@ const useWordle = (solution: string) => {
   const handleKeyup = ({ key }: KeyboardEvent) => {
     const pattern = /^[A-Za-z]$/;
 
-    if (key === "Enter") {
+    if (key === 'Enter') {
       if (turn > 5) {
         console.log("Sorry! You've used all your guesses!");
         return;
       }
 
       if (history.includes(currentGuess)) {
-        console.log("You have already tried that word!");
+        console.log('You have already tried that word!');
         return;
       }
 
       if (currentGuess.length !== 5) {
-        console.log("The word must be 5 chars long");
+        console.log('The word must be 5 chars long');
         return;
       }
 
@@ -94,7 +94,7 @@ const useWordle = (solution: string) => {
       addNewGuess(formattedGuess);
     }
 
-    if (key === "Backspace") {
+    if (key === 'Backspace') {
       setCurrentGuess((prevState) => prevState.slice(0, -1));
       return;
     }
