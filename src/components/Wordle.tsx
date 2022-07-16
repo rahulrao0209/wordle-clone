@@ -4,16 +4,16 @@ import useWordle from "../hooks/useWordle";
 
 type WordleProps = {
   solution: string;
-}
+};
 
 const Wordle = ({ solution }: WordleProps) => {
+  const { currentGuess, handleKeyup, guesses, isCorrect, turn } =
+    useWordle(solution);
 
-  const { currentGuess, handleKeyup, guesses, isCorrect, turn } = useWordle(solution);
-     
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
     return () => window.removeEventListener("keyup", handleKeyup);
-  }, [handleKeyup])
+  }, [handleKeyup]);
 
   return (
     <>
@@ -21,7 +21,7 @@ const Wordle = ({ solution }: WordleProps) => {
       <div>Guess - {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
     </>
-  )
-}
+  );
+};
 
 export default Wordle;
