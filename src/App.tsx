@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Wordle from './components/Wordle';
+
 export const App = () => {
   const [solution, setSolution] = useState<string | null>(null);
 

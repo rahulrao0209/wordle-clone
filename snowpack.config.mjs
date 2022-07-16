@@ -1,8 +1,8 @@
 export default {
   mount: {
     // directory name: 'build directory'
-    public: "/",
-    src: "/dist",
+    public: '/',
+    src: '/dist',
   },
-  plugins: ["@snowpack/plugin-sass", "@snowpack/plugin-typescript"],
+  plugins: ['@snowpack/plugin-sass', '@snowpack/plugin-typescript'],
 };

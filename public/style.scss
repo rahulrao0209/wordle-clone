@@ -89,6 +89,23 @@ h1 {
   animation: bounce 0.2s ease-in-out forwards;
 }
 
+// Keypad Styles
+.keypad {
+  max-width: 50rem;
+  margin: 2rem auto;
+  font-size: 2em;
+}
+
+.keypad > div {
+  margin: 0.5rem;
+  width: 4rem;
+  height: 5rem;
+  background-color: #eee;
+  display: inline-block;
+  border-radius: 6px;
+  line-height: 5rem;
+}
+
 // Animation
 @keyframes flip {
   0% {
