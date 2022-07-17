@@ -8,13 +8,26 @@ type WordleProps = {
 };
 
 const Wordle = ({ solution }: WordleProps) => {
-  const { currentGuess, handleKeyup, guesses, turn, usedKeys } =
+  const { currentGuess, guesses, turn, usedKeys, isCorrect, handleKeyup } =
     useWordle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup);
+
+    if (isCorrect) {
+      console.log('Congrats! You Won the game!');
+      window.removeEventListener('keyup', handleKeyup);
+      return;
+    }
+
+    if (turn > 5) {
+      console.log("Oops! You're out of guesses!");
+      window.removeEventListener('keyup', handleKeyup);
+      return;
+    }
+
     return () => window.removeEventListener('keyup', handleKeyup);
-  }, [handleKeyup]);
+  }, [handleKeyup, isCorrect, turn]);
 
   return (
     <>
