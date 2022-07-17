@@ -1,9 +1,9 @@
 import React from 'react';
-import type { formattedGuess } from '../hooks/useWordle';
+import type { FormattedGuess } from '../hooks/useWordle';
 
 type RowProps = {
   key: number;
-  guess?: formattedGuess[] | undefined;
+  guess?: FormattedGuess[] | undefined;
   currentGuess?: string;
 };
 const Row = (props: RowProps) => {

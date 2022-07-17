@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
-export type formattedGuess = {
+export type FormattedGuess = {
   key: string;
   color: string;
 };
 
+type usedKeys = {};
+
 const useWordle = (solution: string) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState('');
-  const [guesses, setGuesses] = useState<(formattedGuess[] | undefined)[]>([
+  const [guesses, setGuesses] = useState<(FormattedGuess[] | undefined)[]>([
     ...Array(6),
   ]);
   const [history, setHistory] = useState<string[]>([]);
@@ -21,7 +23,7 @@ const useWordle = (solution: string) => {
   const formatGuess = () => {
     let solutionArray: string[] | null[] | any = [...solution];
 
-    let formattedGuesses: formattedGuess[] = [...currentGuess].map((letter) => {
+    let formattedGuesses: FormattedGuess[] = [...currentGuess].map((letter) => {
       return { key: letter, color: 'grey' };
     });
 
@@ -49,7 +51,7 @@ const useWordle = (solution: string) => {
       Update the isCorrect state if the guess is correct
       Add one to the turn state
     */
-  const addNewGuess = (guess: formattedGuess[]) => {
+  const addNewGuess = (guess: FormattedGuess[]) => {
     if (currentGuess === solution) {
       setIsCorrect(true);
     }

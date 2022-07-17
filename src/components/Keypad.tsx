@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-type keypadProps = {
+type KeypadProps = {
   key: string;
 };
 
 const Keypad = () => {
-  const [letters, setLetters] = useState<keypadProps[] | null>(null);
+  const [letters, setLetters] = useState<KeypadProps[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:3000/letters');
-      const data: keypadProps[] = await response.json();
+      const data: KeypadProps[] = await response.json();
       setLetters(data);
     };
 

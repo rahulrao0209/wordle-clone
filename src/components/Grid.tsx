@@ -1,10 +1,10 @@
 import React from 'react';
 import Row from './Row';
-import type { formattedGuess } from '../hooks/useWordle';
+import type { FormattedGuess } from '../hooks/useWordle';
 
 type GridProps = {
   currentGuess: string;
-  guesses: (formattedGuess[] | undefined)[];
+  guesses: (FormattedGuess[] | undefined)[];
   turn: number;
 };
 
