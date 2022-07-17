@@ -94,16 +94,38 @@ h1 {
   max-width: 50rem;
   margin: 2rem auto;
   font-size: 2em;
+
+  & > div {
+    margin: 0.5rem;
+    width: 4rem;
+    height: 5rem;
+    background-color: #eee;
+    display: inline-block;
+    border-radius: 6px;
+    line-height: 5rem;
+  }
+
+  & > div.green {
+    background-color: #5ac85a;
+    color: #fff;
+    transition: all 0.3s ease-in;
+  }
+
+  & > div.yellow {
+    background-color: #e2cc68;
+    color: #fff;
+    transition: all 0.3s ease-in;
+  }
+
+  & > div.grey {
+    background-color: #a1a1a1;
+    color: #fff;
+    transition: all 0.3s ease-in;
+  }
 }
 
-.keypad > div {
-  margin: 0.5rem;
-  width: 4rem;
-  height: 5rem;
-  background-color: #eee;
-  display: inline-block;
-  border-radius: 6px;
-  line-height: 5rem;
+// Keypad color
+.keypad {
 }
 
 // Animation
