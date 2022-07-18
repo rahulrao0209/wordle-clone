@@ -29,7 +29,7 @@ const Row = (props: RowProps) => {
     return (
       <div className="row current">
         {letters.map((letter, index) => (
-          <div key={index} className="filled">
+          <div role="input" key={index} className="filled">
             {letter}
           </div>
         ))}
@@ -42,11 +42,11 @@ const Row = (props: RowProps) => {
 
   return (
     <div className="row">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div role="input"></div>
+      <div role="input"></div>
+      <div role="input"></div>
+      <div role="input"></div>
+      <div role="input"></div>
     </div>
   );
 };

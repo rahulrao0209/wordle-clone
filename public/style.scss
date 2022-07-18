@@ -8,7 +8,32 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; // 1rem = 10px
+  font-size: 50%;
+
+  /* Mobile Landscape */
+  @media only screen and (min-width: 478px) {
+    font-size: 50%;
+  }
+
+  /* Tablet */
+  @media only screen and (min-width: 768px) {
+    font-size: 56.25%; // 1rem = 8px
+  }
+
+  /* Desktop Base */
+  @media only screen and (min-width: 992px) {
+    font-size: 56.25%;
+  }
+
+  /* Desktop Large */
+  @media only screen and (min-width: 1200px) {
+    font-size: 62.5%; // 1rem = 10px
+  }
+
+  /* Larger breakpoints */
+  @media only screen and (min-width: 1440px) {
+    font-size: 68.75%; // 1rem = 11px
+  }
 }
 
 body {
@@ -122,6 +147,77 @@ h1 {
     color: #fff;
     transition: all 0.3s ease-in;
   }
+}
+
+// Modal Styles
+.modal {
+  background-color: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.modal div {
+  width: 80%;
+  background-color: #fff;
+  padding: 4rem;
+  border-radius: 10px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+  & > button {
+    width: 16rem;
+    margin: 0 0 1rem 0;
+    padding: 0.6em 0.5em;
+    font-size: 1.8em;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background-color: #5ac85a;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid currentColor;
+      color: #5ac85a;
+      box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      transform: translateY(4px);
+    }
+  }
+
+  @media only screen and (min-width: 478px) {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.modal .message {
+  margin: 2rem 0;
+  font-size: 1.5em;
+}
+
+.modal .solution {
+  color: #ff004c;
+  font-weight: bold;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 // Animation

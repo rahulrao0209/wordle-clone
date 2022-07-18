@@ -22,8 +22,6 @@ const Keypad = ({ usedKeys }: KeypadProps) => {
     fetchData();
   }, []);
 
-  console.log('Used Keys: ', usedKeys);
-
   return (
     <div className="keypad">
       {letters &&
