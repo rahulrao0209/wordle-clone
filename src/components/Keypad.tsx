@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useWordle from '../hooks/useWordle';
 import type { UsedKeys } from '../hooks/useWordle';
 import LETTERS from '../data/letters.json';
 
@@ -8,10 +9,13 @@ type Keys = {
 
 type KeypadProps = {
   usedKeys: UsedKeys;
+  solution: string;
 };
 
-const Keypad = ({ usedKeys }: KeypadProps) => {
+const Keypad = ({ usedKeys, solution }: KeypadProps) => {
   const [letters, setLetters] = useState<Keys[] | null>(null);
+
+  const { handleKeypad } = useWordle(solution);
 
   useEffect(() => {
     const data = JSON.parse(JSON.stringify(LETTERS));
@@ -20,12 +24,12 @@ const Keypad = ({ usedKeys }: KeypadProps) => {
   }, []);
 
   return (
-    <div className="keypad">
+    <div className="keypad" onClick={(event) => handleKeypad(event)}>
       {letters &&
         letters.map((letter) => {
           const keyColor = usedKeys[letter.key];
           return (
-            <div key={letter.key} className={keyColor}>
+            <div key={letter.key} className={keyColor} data-value={letter.key}>
               {letter.key}
             </div>
           );
