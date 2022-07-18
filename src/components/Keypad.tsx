@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { UsedKeys } from '../hooks/useWordle';
+import LETTERS from '../data/letters.json';
 
 type Keys = {
   key: string;
@@ -13,13 +14,9 @@ const Keypad = ({ usedKeys }: KeypadProps) => {
   const [letters, setLetters] = useState<Keys[] | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/letters');
-      const data: Keys[] = await response.json();
-      setLetters(data);
-    };
-
-    fetchData();
+    const data = JSON.parse(JSON.stringify(LETTERS));
+    const letters = data.letters;
+    setLetters(letters);
   }, []);
 
   return (

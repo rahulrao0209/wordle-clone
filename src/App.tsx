@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Wordle from './components/Wordle';
+import SOLUTIONS from './data/solutions.json';
 
 export const App = () => {
   const [solution, setSolution] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/solutions');
-        const data = await response.json();
-        const randomSolution = data[Math.floor(Math.random() * data.length)];
-        setSolution(randomSolution.word);
-      } catch (err) {
-        console.log('Error fetching data: ', err);
-      }
-    };
-
-    fetchData();
-  }, [setSolution]);
+    const data = JSON.parse(JSON.stringify(SOLUTIONS));
+    const solutions = data.solutions;
+    console.log('solutions: ', solutions);
+    const randomSolution =
+      solutions[Math.floor(Math.random() * solutions.length)];
+    setSolution(randomSolution.word);
+  }, []);
 
   return (
     <div className="app">
