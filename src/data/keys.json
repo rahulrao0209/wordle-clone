@@ -1,5 +1,5 @@
 {
-  "letters": [
+  "keys": [
     { "key": "a" },
     { "key": "b" },
     { "key": "c" },
@@ -26,6 +26,7 @@
     { "key": "x" },
     { "key": "y" },
     { "key": "z" },
-    { "key": "Enter" }
+    { "key": "Enter" },
+    { "key": "Backspace" }
   ]
 }

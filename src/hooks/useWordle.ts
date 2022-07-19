@@ -138,8 +138,10 @@ const useWordle = (solution: string) => {
 
   // TEST
   const handleKeypad = (event: React.BaseSyntheticEvent<MouseEvent> | any) => {
-    console.log('Clicked: ', event.target.dataset.value);
-    const key = event.target.dataset.value;
+    // console.log('Clicked: ', event.target.dataset.value);
+    // console.log('Target: ', event.target.closest('div'));
+    const key =
+      event.target.dataset.value || event.target.closest('div').dataset.value;
     const pattern = /^[A-Za-z]$/;
 
     if (key === 'Enter') {
