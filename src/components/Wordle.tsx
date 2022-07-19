@@ -9,10 +9,19 @@ type WordleProps = {
 };
 
 const Wordle = ({ solution }: WordleProps) => {
-  const { currentGuess, guesses, turn, usedKeys, isCorrect, handleKeyup } =
-    useWordle(solution);
+  const {
+    currentGuess,
+    guesses,
+    turn,
+    usedKeys,
+    isCorrect,
+    handleKeyup,
+    handleKeypad,
+  } = useWordle(solution);
 
   const [showModal, setShowModal] = useState(false);
+
+  console.log('Current Guess: ', currentGuess);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup);
@@ -34,10 +43,32 @@ const Wordle = ({ solution }: WordleProps) => {
     return () => window.removeEventListener('keyup', handleKeyup);
   }, [handleKeyup, isCorrect, turn]);
 
+  // TEST
+  useEffect(() => {
+    const keypad = document.querySelector('.keypad');
+    keypad?.addEventListener('click', handleKeypad);
+
+    if (isCorrect) {
+      console.log('Congrats! You Won the game!');
+      keypad?.removeEventListener('click', handleKeypad);
+      setTimeout(() => setShowModal(true), 2000);
+      return;
+    }
+
+    if (turn > 5) {
+      console.log("Oops! You're out of guesses!");
+      keypad?.removeEventListener('click', handleKeypad);
+      setTimeout(() => setShowModal(true), 2000);
+      return;
+    }
+
+    return () => keypad?.removeEventListener('click', handleKeypad);
+  }, [handleKeypad, isCorrect, turn]);
+
   return (
     <>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
-      <Keypad usedKeys={usedKeys} />
+      <Keypad usedKeys={usedKeys} solution={solution} />
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}

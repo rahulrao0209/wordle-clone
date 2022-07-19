@@ -128,6 +128,44 @@ h1 {
     display: inline-block;
     border-radius: 6px;
     line-height: 5rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 4px;
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      cursor: pointer;
+      box-shadow: none;
+      transform: translateY(1px);
+    }
+
+    /*
+     Targeting the Enter and Backspace keys
+     which are placed after all the alphabets.
+    */
+    &:nth-child(27) {
+      width: auto;
+      padding: 0 0.5em;
+      color: #fff;
+      background-color: #ff8008;
+    }
+
+    &:nth-child(28) {
+      min-width: 5rem;
+      padding: 0 1.5em;
+      color: #fff;
+      background-color: #dc2424;
+
+      & > svg {
+        font-size: 1.4em;
+        position: relative;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   & > div.green {
