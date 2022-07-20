@@ -101,10 +101,11 @@ const useWordle = (solution: string) => {
   };
 
   /*
-      Handle keyup event & track current guess
+      Handle keyup and keypad events & track current guess
       If user presses enter, add the new guess
     */
-  const handleKeyup = ({ key }: KeyboardEvent) => {
+
+  const handleKey = (key: string) => {
     const pattern = /^[A-Za-z]$/;
     console.log('KEY: ', key);
     if (key === 'Enter') {
@@ -136,44 +137,15 @@ const useWordle = (solution: string) => {
       setCurrentGuess((prevState) => prevState + key);
   };
 
-  // TEST
+  const handleKeyup = ({ key }: KeyboardEvent) => {
+    handleKey(key);
+  };
+
   const handleKeypad = (event: React.BaseSyntheticEvent<MouseEvent> | any) => {
-    // console.log('Clicked: ', event.target.dataset.value);
-    // console.log('Target: ', event.target.closest('div'));
     const key =
       event.target.dataset.value || event.target.closest('div').dataset.value;
-    const pattern = /^[A-Za-z]$/;
 
-    if (key === 'Enter') {
-      if (turn > 5) {
-        console.log("Sorry! You've used all your guesses!");
-        return;
-      }
-
-      if (history.includes(currentGuess)) {
-        console.log('You have already tried that word!');
-        return;
-      }
-
-      if (currentGuess.length !== 5) {
-        console.log('The word must be 5 chars long');
-        return;
-      }
-
-      const formattedGuess = formatGuess();
-      addNewGuess(formattedGuess);
-    }
-
-    if (key === 'Backspace') {
-      setCurrentGuess((prevState) => prevState.slice(0, -1));
-      return;
-    }
-
-    pattern.test(key) &&
-      currentGuess.length < 5 &&
-      setCurrentGuess((prevState) => prevState + key);
-
-    console.log('I am here');
+    handleKey(key);
   };
 
   return {
