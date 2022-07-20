@@ -43,7 +43,6 @@ const Wordle = ({ solution }: WordleProps) => {
     return () => window.removeEventListener('keyup', handleKeyup);
   }, [handleKeyup, isCorrect, turn]);
 
-  // TEST
   useEffect(() => {
     const keypad = document.querySelector('.keypad');
     keypad?.addEventListener('click', handleKeypad);

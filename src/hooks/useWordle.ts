@@ -42,7 +42,6 @@ const useWordle = (solution: string) => {
     formattedGuesses.forEach((letter, index) => {
       if (solutionArray.includes(letter.key) && letter.color !== 'green') {
         formattedGuesses[index].color = 'yellow';
-        // solutionArray[solutionArray.indexOf(letter.key)] = null;
       }
     });
 
@@ -101,10 +100,9 @@ const useWordle = (solution: string) => {
   };
 
   /*
-      Handle keyup and keypad events & track current guess
-      If user presses enter, add the new guess
-    */
-
+    Handle keyup and keypad events & track current guess
+    If user presses enter, add the new guess
+  */
   const handleKey = (key: string) => {
     const pattern = /^[A-Za-z]$/;
     console.log('KEY: ', key);
